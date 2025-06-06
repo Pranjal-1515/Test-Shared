@@ -1,1 +1,16 @@
 # Shared Workflow
+name: Print Name
+
+on:
+  workflow_call:
+    inputs:
+      name_value:
+        required: true
+        type: string
+
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Name Value
+        run: echo "The name value is: ${{ inputs.name_value }}"
