@@ -1,4 +1,3 @@
-# Shared Workflow
 name: Print Name
 
 on:
@@ -13,4 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Name Value
-        run: echo "The name value is: ${{ inputs.name_value }}"
+        run: |
+           echo "The name value is: ${{ inputs.name_value }}"
+
