@@ -2,16 +2,16 @@ name: Print Name
 
 on:
   workflow_call:
-    outputs:
-      name:
-        description: "get the value of name"
-        value: ${{ vars.name }}
 
 jobs:
-  print:
+  print-name:
     runs-on: ubuntu-latest
     steps:
+      - name: Fetch Name from Org A
+        uses: Pranjal-1515/Test-Shared/.github/workflows/Test-A.yml@main
+        id: fetch-name
+    
       - name: Print Name Value
         run: |
-           echo "The name value is: ${{ vars.name }}"
+           echo "The name value is: ${{ steps.fetch-name.outputs.name }}"
 
