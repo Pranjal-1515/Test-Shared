@@ -1,23 +1,28 @@
 name: Print Name via Shared
 
 on:
-  workflow_call: 
+  workflow_call:
+    inputs:
+      repo_name:
+        type: string
+        required: true
 
 jobs:
-  fetch-name:
+  fetch-name-a:
+    if: ${{ inputs.repo_name == 'Test-A' }}
     uses: Pranjal-1515/Test-A/.github/workflows/Pass_Variable.yaml@main
 
+  fetch-name-b:
+    if: ${{ inputs.repo_name == 'Test-B' }}
+    uses: Pranjal-1515/Test-B/.github/workflows/Pass_Variable.yaml@main
+
   print-name:
-    needs: fetch-name
     runs-on: ubuntu-latest
+    needs: [fetch-name-a, fetch-name-b]
     steps:
       - name: Print Name Value
         run: |
-          echo "name: \"${{ needs.fetch-name.outputs.name }}\"" > config.yml
-          echo "others: \"${{ needs.fetch-name.outputs.others }}\"" >> config.yml
-
+          echo "name: \"${{ needs.fetch-name-a.outputs.name || needs.fetch-name-b.outputs.name }}\"" > config.yml
+          echo "others: \"${{ needs.fetch-name-a.outputs.others || needs.fetch-name-b.outputs.others }}\"" >> config.yml
       - name: Print config.yml
-        run: |
-          cat config.yml    
-
-          
+        run: cat config.yml
