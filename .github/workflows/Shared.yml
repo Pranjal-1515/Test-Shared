@@ -2,10 +2,10 @@ name: Print Name
 
 on:
   workflow_call:
-    inputs:
-      name_value:
-        required: true
-        type: string
+    outputs:
+      name:
+        description: "get the value of name"
+        value: ${{ vars.name }}
 
 jobs:
   print:
@@ -13,5 +13,5 @@ jobs:
     steps:
       - name: Print Name Value
         run: |
-           echo "The name value is: ${{ inputs.name_value }}"
+           echo "The name value is: ${{ vars.name }}"
 
