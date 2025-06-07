@@ -1,17 +1,16 @@
-name: Print Name
+name: Print Name via Shared
 
 on:
   workflow_call:
 
 jobs:
+  fetch-name:
+    uses: Pranjal-1515/Test-A/.github/workflows/Pass_Variable.yaml@main
+
   print-name:
+    needs: fetch-name
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Name from Org A
-        uses: Pranjal-1515/Test-Shared/.github/workflows/Test-A.yml@main
-        id: fetch-name
-    
       - name: Print Name Value
         run: |
-           echo "The name value is: ${{ steps.fetch-name.outputs.name }}"
-
+          echo "The name value is: ${{ needs.fetch-name.outputs.name }}"
