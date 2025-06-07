@@ -1,15 +1,11 @@
 name: Print Name via Shared
 
 on:
-  workflow_call:
-     inputs:
-        variable_path:
-           type: string
-           required: true
+  workflow_call: 
 
 jobs:
   fetch-name:
-    uses: ${{ inputs.variable_path }}
+    uses: Pranjal-1515/Test-A/.github/workflows/Pass_Variable.yaml@main
 
   print-name:
     needs: fetch-name
