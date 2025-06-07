@@ -13,4 +13,10 @@ jobs:
     steps:
       - name: Print Name Value
         run: |
-          echo "The name value is: ${{ needs.fetch-name.outputs.name }}"
+          echo "name: \"${{ needs.fetch-name.outputs.name }}\"" > config.yml
+
+      - name: Print config.yml
+        run: |
+          cat config.yml    
+
+          
