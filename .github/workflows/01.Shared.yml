@@ -1,1 +1,12 @@
-name: Shared Yaml
+name: Print Name from Shared
+
+on:
+  workflow_call:
+
+jobs:
+  print-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print name from Test-Shared variable
+        run: |
+           echo "Name from Test-Shared variable: ${{ vars.name }}"
