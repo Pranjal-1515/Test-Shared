@@ -1,0 +1,23 @@
+name: Print Name from Shared
+
+on:
+  workflow_call:
+     inputs:
+      env_name:
+        required: true
+        type: string
+        description: "Environment name: Dev or Prod"
+
+jobs:
+  print-name:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.env_name }}
+    steps:
+      - name: Print Name ValueAdd commentMore actions
+        run: |
+          echo "name: \"${{ vars.name }}\"" > config.yml
+          echo "others: \"${{ vars.others }}\"" >> config.yml
+
+      - name: Print config.yml
+        run: |
+           cat config.yml
