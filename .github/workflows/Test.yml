@@ -1,0 +1,12 @@
+name: Test Repo Variable
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print-var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print name from Test-Shared variable
+        run: |
+           echo "Name from Test-Shared variable: ${{ vars.name }}"
