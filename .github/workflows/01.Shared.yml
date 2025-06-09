@@ -7,6 +7,11 @@ jobs:
   print-name:
     runs-on: ubuntu-latest
     steps:
-      - name: Print name from Test-Shared variable
+      - name: Print Name ValueAdd commentMore actions
         run: |
-           echo "Name from Test-Shared variable: ${{ vars.name }}"
+          echo "name: \"${{ vars.name }}\"" > config.yml
+          echo "others: \"${{ vars.others }}\"" >> config.yml
+
+      - name: Print config.yml
+        run: |
+           cat config.yml
